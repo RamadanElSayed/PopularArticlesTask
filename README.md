@@ -21,7 +21,7 @@ DataBinding and Navigation Component ,unit testing ,Mockito , Espresso .
 
 ## The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
-2. **di**: Dependency providing classes using Dagger2.
+2. **di**: Dependency providing classes using Hilt.
 3. **domain**: It contains dto classes and repositories.
 4. **presentation**: View classes along with their corresponding Presenters.
 5. **utils**: Utility classes.
