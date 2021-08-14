@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="padding_1">1dp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="padding_14">14dp</dimen>
+    <dimen name="activityPadding">16dp</dimen>
+    <dimen name="placeholderImage">60dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="_112sdp">111dp</dimen>
+    <dimen name="_7sdp">7dp</dimen>
+    <dimen name="_2sdp">2dp</dimen>
+</resources>

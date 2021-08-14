@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.task.populararticles.domain.model.ArticleData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layoutItemRecyclerArticle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/isabelline_2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/article_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_10"
+            android:layout_marginTop="@dimen/padding_15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/title"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_title_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_8"
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway_regular"
+                android:text="@{model.title}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/title_tv"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Lorem ipsum dolor sit amet, consetetur sed diam sadipscing elitr." />
+
+
+            <TextView
+                android:id="@+id/section_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_5"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/section"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_value" />
+
+            <TextView
+                android:id="@+id/tv_section_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_8"
+                android:layout_marginTop="@dimen/padding_5"
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway_regular"
+                android:text="@{model.section}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/section_tv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_value"
+                tools:text="Lorem ipsum dolor sit amet, consetetur sed diam sadipscing elitr." />
+
+            <TextView
+                android:id="@+id/publish_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_5"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/publish_date"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_section_value" />
+
+            <TextView
+                android:id="@+id/tv_publish_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_8"
+                android:layout_marginTop="@dimen/padding_5"
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway_regular"
+                android:text="@{model.publishedDate}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/publish_tv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_section_value"
+                tools:text="Lorem ipsum dolor sit amet, consetetur sed diam sadipscing elitr." />
+
+
+            <TextView
+                android:id="@+id/abstract_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_5"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/publish_abstract"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_publish_value" />
+
+            <TextView
+                android:id="@+id/tv_abstract_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_8"
+                android:layout_marginTop="@dimen/padding_5"
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway_regular"
+                android:text="@{model.abstract}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/abstract_tv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_publish_value"
+                tools:text="Lorem ipsum dolor sit amet, consetetur sed diam sadipscing elitr." />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_1"
+            android:layout_marginStart="@dimen/padding_15"
+            android:layout_marginEnd="@dimen/padding_15"
+            android:background="@color/transparent50_colorAccent"
+            app:layout_constraintTop_toBottomOf="@+id/article_item_layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.task.populararticles.presentation.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshHomeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray2"
+        app:onRefreshListener="@{() -> viewModel.getMostPopular(viewModel.periodValue)}"
+        app:refreshing="@{viewModel.isShowRefresh}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.loading?View.VISIBLE : View.GONE}">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerFrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+
+                        <include layout="@layout/shimmer_base_fragment_layout" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/error_message_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@{viewModel.errorMessage}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway_semi_bold"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/wenge"
+                android:textSize="@dimen/font_size_14"
+                android:visibility="@{viewModel.failure?View.VISIBLE : View.GONE}"
+
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layoutAnimation="@anim/layout_animation"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingBottom="@dimen/padding_14"
+                android:visibility="@{!viewModel.failure &amp;&amp; !viewModel.loading ?View.VISIBLE : View.GONE}"
+                app:adapter="@{viewModel.adapter}"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:spanCount="1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

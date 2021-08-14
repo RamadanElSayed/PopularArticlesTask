@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PopularArticlesTask</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_connection">Please Check Internet Connection and try again</string>
+    <string name="something_went_wrong">Something went wrong, please try again later.</string>
+    <string name="title">Title :  </string>
+    <string name="section">Section : </string>
+    <string name="publish_date">Publish date : </string>
+    <string name="publish_abstract">Abstrct : </string>
+    <string name="article">Articles</string>
+    <string name="article_details">Article Details</string>
+</resources>
