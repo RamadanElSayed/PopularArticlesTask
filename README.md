@@ -4,7 +4,6 @@ A simple app to hit the NY Times Most Popular Articles API and show a list of ar
 (a typical master/detail app), that implements MVVM architecture using Hilt, Retrofit, Coroutines,Flow, LiveData,shimmer layout,
 DataBinding and Navigation Component ,unit testing ,Mockito , Espresso .
 
-<br>
  1. Architecture Design Pattern
  2. MVVM
  2. Hilt (Dependency Injection)
@@ -19,7 +18,6 @@ DataBinding and Navigation Component ,unit testing ,Mockito , Espresso .
  11.NYT News API
  12.JetPack Libraries
  13.Navigation Component
-<br>
 
 ## The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
