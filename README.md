@@ -15,9 +15,9 @@ DataBinding and Navigation Component ,unit testing ,Mockito , Espresso .
  7. Repository Pattern
  8. AndroidX
  9. Shimmer layout
- 11.NYT News API
- 12.JetPack Libraries
- 13.Navigation Component
+ 10. NYT News API
+ 11. JetPack Libraries
+ 12. Navigation Component
 
 ## The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
