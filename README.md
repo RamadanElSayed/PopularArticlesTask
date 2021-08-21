@@ -33,6 +33,9 @@ DataBinding and Navigation Component ,unit testing ,Mockito , Espresso .
 <p align="center">
     <img src="architecture.png"/>
 </p>
+<p align="center">
+    <img src="clean_architecture_bob.png"/>
+</p>
 <br>
 
 ## Library reference resources:
