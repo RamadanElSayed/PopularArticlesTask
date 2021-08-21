@@ -31,11 +31,13 @@ DataBinding and Navigation Component ,unit testing ,Mockito , Espresso .
 
 ## Guide to app architecture
 <p align="center">
-    <img src="architecture.png"/>
-</p>
-<p align="center">
     <img src="clean_architecture_bob.png"/>
 </p>
+
+<p align="center">
+    <img src="architecture.png"/>
+</p>
+
 <br>
 
 ## Library reference resources:
