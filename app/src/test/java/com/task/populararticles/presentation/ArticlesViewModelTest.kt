@@ -2,6 +2,7 @@ package com.task.populararticles.presentation
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
 import com.task.populararticles.data.FakeRepository
 import com.task.populararticles.data.mappers.SharedMapper
@@ -35,6 +36,7 @@ class ArticlesViewModelTest {
 
     @Before
     fun setup() {
+       // contextMock= ApplicationProvider.getApplicationContext()
         viewModel = HomeViewModel(
             ResourceProvider(contextMock),
             PopularRemoteUseCase(SharedMapper(), FakeRepository())
