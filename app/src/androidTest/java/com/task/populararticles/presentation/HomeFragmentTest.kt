@@ -9,6 +9,7 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.task.populararticles.R
 import com.task.populararticles.domain.model.ArticleData
@@ -22,11 +23,13 @@ import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mockito
 
 @MediumTest
 @ExperimentalCoroutinesApi
 @HiltAndroidTest
+@RunWith(AndroidJUnit4::class)
 class HomeFragmentTest {
 
     @get:Rule
@@ -36,18 +39,32 @@ class HomeFragmentTest {
     fun setup() {
         hiltRule.inject()
     }
+/*
+ViewMatchers - allows to find view in the current view hierarchy
 
+ViewActions - allows to perform actions on the views
+
+ViewAssertions - allows to assert state of a view
+
+The case construct for Espresso tests is the following:
+
+Base Espresso Test
+onView(ViewMatcher)
+ .perform(ViewAction)
+   .check(ViewAssertion);
+- Finds the view
+- Performs an action on the view
+- Validates a assertioin
+ */
     @Test
     fun articleList_DisplayedInUi() {
         val scenario = launchFragmentInHiltContainer<HomeFragment>(Bundle(), R.style.AppTheme)
-
         Espresso.onView(ViewMatchers.withId(R.id.shimmerFrameLayout))
             .check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())))
         Espresso.onView(ViewMatchers.withId(R.id.error_message_id))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())))
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
             .check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())))
-
         Thread.sleep(2000)
     }
 

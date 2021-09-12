@@ -65,7 +65,7 @@ class HomeViewModel @Inject constructor(
                     is DataState.Success -> {
                         withContext(Dispatchers.Main)
                         {
-                            _popularArticles.value=it.data
+                            _popularArticles.value=it.data!!
                             _loading.postValue(false)
                             failure.postValue(false)
                             it.data.articleData?.let { it1 -> adapter.addData(it1) }
