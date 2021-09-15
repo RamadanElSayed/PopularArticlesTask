@@ -64,7 +64,7 @@ onView(ViewMatcher)
         Espresso.onView(ViewMatchers.withId(R.id.error_message_id))
             .check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())))
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
-            .check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Thread.sleep(2000)
     }
 

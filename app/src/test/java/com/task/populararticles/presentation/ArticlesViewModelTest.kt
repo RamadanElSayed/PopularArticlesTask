@@ -1,5 +1,4 @@
 package com.task.populararticles.presentation
-
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -12,6 +11,7 @@ import com.task.populararticles.domain.usecase.PopularRemoteUseCase
 import com.task.populararticles.presentation.di.providers.ResourceProvider
 import com.task.populararticles.presentation.ui.home.HomeViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.nullValue
 import org.hamcrest.core.IsNot.not
 import org.junit.Before
@@ -19,8 +19,14 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.ArgumentMatchers.anyInt
+
+import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mockito
+import org.mockito.Mockito.*
 
 @RunWith(MockitoJUnitRunner::class)
 @ExperimentalCoroutinesApi
@@ -71,9 +77,14 @@ class ArticlesViewModelTest {
           //  val value =  viewModel.popularArticles.value
             val value = viewModel.popularArticles.getOrAwaitValueTest()
 
+
+          //  `when`(value?.articleData?.first()?.section).thenReturn(fileOutputStream)
+        //    verify(viewModel, times(1)).popularArticles.getOrAwaitValueTest()
+
             assertThat(value?.articleData?.first()?.section).isEqualTo(
                 "U.S."
             )
+            //assertThat(value.articleData?.first()?.section,`is` ("U.S.") )
            // assertThat(value.getContentIfNotHandled(), not(nullValue()))
 
         } finally {
