@@ -1,4 +1,5 @@
 package com.task.populararticles.presentation
+
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -19,12 +20,15 @@ import com.task.populararticles.presentation.ui.home.HomeFragmentDirections
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
+import org.mockito.Mockito.verify
 
 @MediumTest
 @ExperimentalCoroutinesApi
@@ -39,23 +43,32 @@ class HomeFragmentTest {
     fun setup() {
         hiltRule.inject()
     }
-/*
-ViewMatchers - allows to find view in the current view hierarchy
 
-ViewActions - allows to perform actions on the views
+    /*
 
-ViewAssertions - allows to assert state of a view
+    What you want to test and your testing strategy determine the kinds of test you are going
+    to implement for your app. Unit tests are focused and fast.
+     Integration tests verify interaction between parts of your program.
+     End-to-end tests verify features, have the highest fidelity, are often instrumented,
+     and may take longer to run.
 
-The case construct for Espresso tests is the following:
 
-Base Espresso Test
-onView(ViewMatcher)
- .perform(ViewAction)
-   .check(ViewAssertion);
-- Finds the view
-- Performs an action on the view
-- Validates a assertioin
- */
+    ViewMatchers - allows to find view in the current view hierarchy
+
+    ViewActions - allows to perform actions on the views
+
+    ViewAssertions - allows to assert state of a view
+
+    The case construct for Espresso tests is the following:
+
+    Base Espresso Test
+    onView(ViewMatcher)
+     .perform(ViewAction)
+       .check(ViewAssertion);
+    - Finds the view
+    - Performs an action on the view
+    - Validates a assertioin
+     */
     @Test
     fun articleList_DisplayedInUi() {
         val scenario = launchFragmentInHiltContainer<HomeFragment>(Bundle(), R.style.AppTheme)
@@ -70,26 +83,59 @@ onView(ViewMatcher)
 
     @Test
     fun clickArticleNavigateToDetailFragmentOne() {
+        runBlockingTest {
+            val navController = Mockito.mock(NavController::class.java)
+            launchFragmentInHiltContainer<HomeFragment>(Bundle(), R.style.AppTheme) {
+                Navigation.setViewNavController(requireView(), navController)
+            }
 
-        val navController = Mockito.mock(NavController::class.java)
-        launchFragmentInHiltContainer<HomeFragment>(Bundle(), R.style.AppTheme) {
-            Navigation.setViewNavController(requireView(), navController)
-        }
-        // WHEN - Click on the first list item
-        Espresso.onView(withId(R.id.recyclerView))
-            .perform(
-                RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(
-                    ViewMatchers.hasDescendant(ViewMatchers.withText("section")),
-                    ViewActions.click()
+
+            // WHEN - Click on the first list item
+            Espresso.onView(withId(R.id.recyclerView))
+                .perform(
+                    RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(
+                        ViewMatchers.hasDescendant(ViewMatchers.withText("section")),
+                        ViewActions.click()
+                    )
                 )
+
+
+            /*
+             // WHEN - Click on the "+" button
+        onView(withId(R.id.add_task_fab)).perform(click())
+
+        // THEN - Verify that we navigate to the add screen
+        verify(navController).navigate(
+            TasksFragmentDirections.actionTasksFragmentToAddEditTaskFragment(
+                null, getApplicationContext<Context>().getString(R.string.add_task)
+            )
+        )
+             */
+            val article = ArticleData("", "section", "source", "title", "type", "abstract", "")
+
+            verify(navController).navigate(
+                HomeFragmentDirections.actionHomeFragmentToArticleDetailsFragment(article)
             )
 
-        val article = ArticleData("", "section", "source", "title", "type", "abstract", "")
+            delay(2000)
+        }
+        /*
+         // GIVEN - On the home screen
+        val scenario = launchFragmentInContainer<TasksFragment>(Bundle(), R.style.AppTheme)
+        val navController = mock(NavController::class.java)
+        scenario.onFragment {
+            Navigation.setViewNavController(it.view!!, navController)
+        }
 
-        Mockito.verify(navController).navigate(
-            HomeFragmentDirections.actionHomeFragmentToArticleDetailsFragment(article)
+        // WHEN - Click on the "+" button
+        onView(withId(R.id.add_task_fab)).perform(click())
+
+        // THEN - Verify that we navigate to the add screen
+        verify(navController).navigate(
+            TasksFragmentDirections.actionTasksFragmentToAddEditTaskFragment(
+                null, getApplicationContext<Context>().getString(R.string.add_task)
+            )
         )
-
-        Thread.sleep(2000)
+         */
     }
 }
