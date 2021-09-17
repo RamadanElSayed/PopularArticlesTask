@@ -4,6 +4,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.task.populararticles.data.error.ErrorHandling
 import com.task.populararticles.data.resources.DataState
 import com.task.populararticles.domain.model.ArticleData
@@ -82,6 +83,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
 
     override fun onCleared() {
         super.onCleared()

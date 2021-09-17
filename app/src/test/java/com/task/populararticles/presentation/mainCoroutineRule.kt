@@ -9,12 +9,10 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
-
 @ExperimentalCoroutinesApi
-class mainCoroutineRule(
-    private val dispatcher: CoroutineDispatcher = TestCoroutineDispatcher()
-) : TestWatcher() ,TestCoroutineScope by TestCoroutineScope(dispatcher){
-
+class mainCoroutineRule(val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()):
+    TestWatcher(),
+    TestCoroutineScope by TestCoroutineScope(dispatcher) {
     override fun starting(description: Description?) {
         super.starting(description)
         Dispatchers.setMain(dispatcher)

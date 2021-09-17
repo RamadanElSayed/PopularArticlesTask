@@ -21,6 +21,7 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.Matchers
 import org.junit.Before
@@ -39,6 +40,8 @@ class HomeFragmentTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
+    @get:Rule
+    var mainCoroutineRule = mainCoroutineRule()
     @Before
     fun setup() {
         hiltRule.inject()
@@ -83,7 +86,8 @@ class HomeFragmentTest {
 
     @Test
     fun clickArticleNavigateToDetailFragmentOne() {
-        runBlockingTest {
+      //  mainCoroutineRule.runBlockingTest
+        runBlocking {
             val navController = Mockito.mock(NavController::class.java)
             launchFragmentInHiltContainer<HomeFragment>(Bundle(), R.style.AppTheme) {
                 Navigation.setViewNavController(requireView(), navController)
