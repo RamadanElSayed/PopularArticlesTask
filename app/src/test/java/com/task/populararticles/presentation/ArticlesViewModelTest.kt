@@ -34,7 +34,9 @@ import org.mockito.Mockito.*
 @RunWith(MockitoJUnitRunner::class)
 @ExperimentalCoroutinesApi
 class ArticlesViewModelTest {
-
+//https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#0
+    //https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles#0
+    //https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey#4
     // Executes each task synchronously using Architecture Components.
     @get:Rule
     var testInstantTaskExecutorRule = InstantTaskExecutorRule()
