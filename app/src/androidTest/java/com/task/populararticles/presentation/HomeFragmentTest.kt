@@ -22,7 +22,6 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
@@ -42,6 +41,7 @@ class HomeFragmentTest {
 
     @get:Rule
     var mainCoroutineRule = mainCoroutineRule()
+
     @Before
     fun setup() {
         hiltRule.inject()
@@ -86,7 +86,7 @@ class HomeFragmentTest {
 
     @Test
     fun clickArticleNavigateToDetailFragmentOne() {
-      //  mainCoroutineRule.runBlockingTest
+        //  mainCoroutineRule.runBlockingTest
         runBlocking {
             val navController = Mockito.mock(NavController::class.java)
             launchFragmentInHiltContainer<HomeFragment>(Bundle(), R.style.AppTheme) {
@@ -142,4 +142,28 @@ class HomeFragmentTest {
         )
          */
     }
+
+
+    /*
+    Similar to runBlockingTest, runBlocking is used here because refreshTasks is a suspend function.
+
+runBlocking vs. runBlockingTest
+
+Both runBlocking and runBlockingTest block the current thread and wait until any associated coroutines launched in the lambda complete.
+
+In addition, runBlockingTest has the following behaviors meant for testing:
+
+It skips delay, so your tests run faster.
+It adds testing related assertions to the end of the coroutine. These assertions fail if you launch a coroutine and it continues running after the end of the runBlocking lambda (which is a possible coroutine leak) or if you have an uncaught exception.
+It gives you timing control over the coroutine execution.
+So why use runBlocking in your test doubles, like FakeTestRepository? Sometimes you will need a coroutine for a test double, in which case you do need to block the current thread. This is, so that when your test doubles are used in a test case, the thread blocks and allows the coroutine to finish before the test does. Test doubles, though, aren't actually defining a test case, so they don't need and shouldn't use all of the test specific features of runBlockingTest.
+
+In summary:
+
+Tests require deterministic behavior so they aren't flaky.
+"Normal" coroutines are non-deterministic because they run code asynchronously.
+kotlinx-coroutines-test is the gradle dependency for runBlockingTest.
+Writing test classes, meaning classes with @Test functions, use runBlockingTest to get deterministic behavior.
+Writing test doubles, use runBlocking.
+     */
 }
